@@ -88,7 +88,7 @@ jobs:
           EOF
   
           echo "==== patched build.sh ===="
-          cat oss-fuzz/projects/${PROJECTS}/build.sh
+          cat oss-fuzz/projects/${PROJECT}/build.sh
 
       - name: Build OSS-Fuzz image
         run: |
