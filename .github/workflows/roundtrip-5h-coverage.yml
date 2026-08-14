@@ -83,12 +83,12 @@ jobs:
               $SRC/$NEW_TARGET.cpp $SRC/tinyxml2/tinyxml2.cpp -o $OUT/$NEW_TARGET \
               $LIB_FUZZING_ENGINE
 
-        cp $SRC/${NEW_TARGET}.dict $OUT/${NEW_TARGET}.dict || true
-        cp $SRC/${NEW_TARGET}_seed_corpus.zip $OUT/${NEW_TARGET}_seed_corpus.zip || ture
-        EOF
-
-        echo "==== patched build.sh ===="
-        cat oss-fuzz/projects/${PROJECTS}/build.sh
+          cp $SRC/${NEW_TARGET}.dict $OUT/${NEW_TARGET}.dict || true
+          cp $SRC/${NEW_TARGET}_seed_corpus.zip $OUT/${NEW_TARGET}_seed_corpus.zip || ture
+          EOF
+  
+          echo "==== patched build.sh ===="
+          cat oss-fuzz/projects/${PROJECTS}/build.sh
 
       - name: Build OSS-Fuzz image
         run: |
