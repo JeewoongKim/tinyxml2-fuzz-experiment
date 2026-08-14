@@ -55,7 +55,7 @@ jobs:
           set -eux
 
           cp \
-            "experiment/fuzz/${NEW_TARGET}.cc" \
+            "experiment/fuzz/${NEW_TARGET}.cpp" \
             "oss-fuzz/projects/${PROJECT}/${NEW_TARGET}.cpp"
 
           # Reuse the production XML dictionary under the new target's name.
