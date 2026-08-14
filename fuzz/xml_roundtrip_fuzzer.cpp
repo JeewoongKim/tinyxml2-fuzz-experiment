@@ -22,10 +22,9 @@ using namespace tinyxml2;
 
 // Entry point for LibFuzzer.
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
-    std::string data_string(reinterpret_cast<const char*>(data), size);
     XMLDocument doc;
 
-    if (doc.Parse( data_string.c_str() ) != XML_SUCCESS) {
+    if (doc.Parse( reinterpret_cast<const char*>(data), size ) != XML_SUCCESS) {
         return 0;
     }
 
@@ -33,7 +32,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
     doc.Print(&printer);
 
     XMLDocument reparsed;
-    reparsed.Parse(printer.CStr());
+    reparsed.Parse(printer.CStr(), printer.CStrSize() - 1);
 
     return 0;
 }
