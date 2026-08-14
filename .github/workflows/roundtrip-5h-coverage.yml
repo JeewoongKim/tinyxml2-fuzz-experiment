@@ -13,9 +13,9 @@ on:
           - undefined
       duration:
         description: "Fuzzing duration in seconds (default: 5 hours = 18000)"
-          required: true
-          default: "18000"
-          type: string
+        required: true
+        default: "18000"
+        type: string
 
 permissions:
   contents: read
