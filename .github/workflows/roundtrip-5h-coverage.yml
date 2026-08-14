@@ -76,14 +76,6 @@ jobs:
         run: |
           cat >> oss-fuzz/projects/${PROJECT}/build.sh <<'EOF'
 
-          $CXX $CXXFLAGS -std=c++11 -I$SRC/tinyxml2 \
-              $SRC/$NEW_TARGET.cpp -o $OUT/$NEW_TARGET \
-              $LIB_FUZZING_ENGINE $SRC/tinyxml2/tinyxml2.o || \
-          $CXX $CXXFLAGS -std=c++11 -I$SRC/tinyxml2 \
-              $SRC/$NEW_TARGET.cpp $SRC/tinyxml2/tinyxml2.cpp -o $OUT/$NEW_TARGET \
-              $LIB_FUZZING_ENGINE
-
-          cp $SRC/${NEW_TARGET}.dict $OUT/${NEW_TARGET}.dict || true
           cp $SRC/${NEW_TARGET}_seed_corpus.zip $OUT/${NEW_TARGET}_seed_corpus.zip || ture
           EOF
   
