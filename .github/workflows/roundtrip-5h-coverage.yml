@@ -72,7 +72,7 @@ jobs:
           set -eux
           cat >> oss-fuzz/projects/${PROJECT}/build.sh <<'EOF'
 
-          zip -j $OUT/xml_roundtrip_fuzzer_seed_corpus.zip" "tinyxml2/resources/"*.xml
+          zip -j $OUT/xml_roundtrip_fuzzer_seed_corpus.zip $SRC/tinyxml2/resources/*.xml
           EOF
   
           echo "==== patched build.sh ===="
