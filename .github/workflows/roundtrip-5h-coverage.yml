@@ -63,21 +63,16 @@ jobs:
             "oss-fuzz/projects/${PROJECT}/xml.dict" \
             "oss-fuzz/projects/${PROJECT}/${NEW_TARGET}.dict"
 
-          zip -j \
-            "oss-fuzz/projects/${PROJECT}/${NEW_TARGET}_seed_corpus.zip" \
-            "tinyxml2-local/resources/"*.xml
-
           echo "===== added tinyxml2 target files ====="
           ls -lh "oss-fuzz/projects/${PROJECT}/${NEW_TARGET}.cpp"
           ls -lh "oss-fuzz/projects/${PROJECT}/${NEW_TARGET}.dict"
-          ls -lh "oss-fuzz/projects/${PROJECT}/${NEW_TARGET}_seed_corpus.zip"
 
       - name: Patch OSS-Fuzz tinyxml2 build.sh
         run: |
           set -eux
           cat >> oss-fuzz/projects/${PROJECT}/build.sh <<'EOF'
 
-          cp $SRC/xml_roundtrip_fuzzer_seed_corpus.zip $OUT/xml_roundtrip_fuzzer_seed_corpus.zip || true
+          zip -j $OUT/xml_roundtrip_fuzzer_seed_corpus.zip" "tinyxml2/resources/"*.xml
           EOF
   
           echo "==== patched build.sh ===="
