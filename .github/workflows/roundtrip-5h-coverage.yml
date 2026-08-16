@@ -72,11 +72,12 @@ jobs:
           ls -lh "oss-fuzz/projects/${PROJECT}/${NEW_TARGET}.dict"
           ls -lh "oss-fuzz/projects/${PROJECT}/${NEW_TARGET}_seed_corpus.zip"
 
-      - name: Build OSS-Fuzz image
+      - name: Patch OSS-Fuzz tinyxml2 build.sh
         run: |
+          set -eux
           cat >> oss-fuzz/projects/${PROJECT}/build.sh <<'EOF'
 
-          cp $SRC/${NEW_TARGET}_seed_corpus.zip $OUT/${NEW_TARGET}_seed_corpus.zip || ture
+          cp $SRC/${NEW_TARGET}_seed_corpus.zip $OUT/${NEW_TARGET}_seed_corpus.zip || true
           EOF
   
           echo "==== patched build.sh ===="
