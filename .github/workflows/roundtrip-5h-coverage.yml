@@ -77,7 +77,7 @@ jobs:
           set -eux
           cat >> oss-fuzz/projects/${PROJECT}/build.sh <<'EOF'
 
-          cp $SRC/${NEW_TARGET}_seed_corpus.zip $OUT/${NEW_TARGET}_seed_corpus.zip || true
+          cp $SRC/xml_roundtrip_fuzzer_seed_corpus.zip $OUT/xml_roundtrip_fuzzer_seed_corpus.zip || true
           EOF
   
           echo "==== patched build.sh ===="
